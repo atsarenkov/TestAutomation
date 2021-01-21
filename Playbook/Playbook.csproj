@@ -131,7 +131,6 @@
     <Compile Include="StepDefinition\VerifyInitiativeDetails.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
     <None Include="FeatureFile\CreateInitiative.feature" />
     <None Include="FeatureFile\VerifyInitiativeDetails.feature" />
     <None Include="packages.config" />
