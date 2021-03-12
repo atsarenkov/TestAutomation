@@ -115,7 +115,6 @@ namespace Playbook.Pages
                 wait.Until(Driver => TeamMembersSearchField.Displayed);
                 TeamMembersSearchField.SendKeys(teamMember);
                 IAlert alert = Driver.SwitchTo().Alert();
-                alert.Accept();
                 alert.Dismiss();
             }
             catch (NoAlertPresentException)
