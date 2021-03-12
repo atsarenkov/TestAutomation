@@ -44,7 +44,7 @@ namespace Playbook.Pages
         #region Actions
         public string InitiativeName()
         {
-            return wait.Until(driver => Name.Text);
+            return wait.Until(Driver => Name.Text);
         }
 
         public string FinanceApprovalStatus()
@@ -124,7 +124,7 @@ namespace Playbook.Pages
 
         public string SecondMilestone()
         {
-            wait.Until(driver => SecondMilestoneValue.Displayed);
+            wait.Until(Driver => SecondMilestoneValue.Displayed);
             return SecondMilestoneValue.Text.Replace(Environment.NewLine, " ");
         }
 
@@ -155,7 +155,7 @@ namespace Playbook.Pages
 
         public void DeleteInitiative()
         {
-            wait.Until(driver => DeleteInitiativeButton.Displayed);
+            wait.Until(Driver => DeleteInitiativeButton.Displayed);
             DeleteInitiativeButton.Click();
             DeleteButton.Click();
         }

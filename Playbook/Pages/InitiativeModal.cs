@@ -60,7 +60,7 @@ namespace Playbook.Pages
         #region Actions
         public void EnterInitiativeName(string initiativeName)
         {
-            wait.Until(driver => NameField.Displayed);
+            wait.Until(Driver => NameField.Displayed);
             NameField.SendKeys(initiativeName);
         }
 
@@ -71,38 +71,38 @@ namespace Playbook.Pages
 
         public void SelectRevenueIncreaseInitiative()
         {
-            wait.Until(driver => InitiativeTypeDropdown.Displayed);
+            wait.Until(Driver => InitiativeTypeDropdown.Displayed);
             InitiativeTypeDropdown.Click();
-            wait.Until(driver => RevenueIncreaseInitiative.Displayed);
+            wait.Until(Driver => RevenueIncreaseInitiative.Displayed);
             RevenueIncreaseInitiative.Click();
         }
 
         public void SelectTargetPercentInitiative()
         {
-            wait.Until(driver => InitiativeTypeDropdown.Displayed);
+            wait.Until(Driver => InitiativeTypeDropdown.Displayed);
             InitiativeTypeDropdown.Click();
-            wait.Until(driver => TargetPercentInitiative.Displayed);
+            wait.Until(Driver => TargetPercentInitiative.Displayed);
             TargetPercentInitiative.Click();
         }
 
         public void SelectTargetValueInitiative()
         {
-            wait.Until(driver => InitiativeTypeDropdown.Displayed);
+            wait.Until(Driver => InitiativeTypeDropdown.Displayed);
             InitiativeTypeDropdown.Click();
-            wait.Until(driver => TargetValueInitiative.Displayed);
+            wait.Until(Driver => TargetValueInitiative.Displayed);
             TargetValueInitiative.Click();
         }
 
         public void SelectTeamLeads(string teamLead)
         {
-            wait.Until(driver => AddLeadButton.Enabled);
+            wait.Until(Driver => AddLeadButton.Enabled);
             executor.ExecuteScript("arguments[0].click();", AddLeadButton);
             SelectTeamMember(teamLead);
         }
 
         public void SelectStakeholders(string stakeholder)
         {
-            wait.Until(driver => AddStakeholderButton.Enabled);
+            wait.Until(Driver => AddStakeholderButton.Enabled);
             executor.ExecuteScript("arguments[0].click();", AddStakeholderButton);
             SelectTeamMember(stakeholder);
         }
@@ -112,7 +112,7 @@ namespace Playbook.Pages
             TeamMembersDropdown.Click();
             try
             {
-                wait.Until(driver => TeamMembersSearchField.Displayed);
+                wait.Until(Driver => TeamMembersSearchField.Displayed);
                 TeamMembersSearchField.SendKeys(teamMember);
                 IAlert alert = Driver.SwitchTo().Alert();
                 alert.Accept();
@@ -138,7 +138,7 @@ namespace Playbook.Pages
         public void EnterSecondFiscalYearImpactValue(string impactValue)
         {
             AddYearButton.Click();
-            wait.Until(driver => SelectYear.Displayed);
+            wait.Until(Driver => SelectYear.Displayed);
             SelectYear.Click();
             SecondFiscalYearImpactValue.SendKeys(impactValue);
         }
@@ -175,7 +175,7 @@ namespace Playbook.Pages
         public void ChangeDefaultMilestone(string defaultMilestone)
         {
             DefaultMilestoneDropdown.Click();
-            wait.Until(driver => DefaultMilestoneSearchField.Displayed);
+            wait.Until(Driver => DefaultMilestoneSearchField.Displayed);
             DefaultMilestoneSearchField.SendKeys(defaultMilestone);
             executor.ExecuteScript("arguments[0].click();", FilteredMilestone);
         }
@@ -191,7 +191,7 @@ namespace Playbook.Pages
         {
             AddAnotherMilestoneButton.Click();
             AdditionalMilestoneDropdown.Click();
-            wait.Until(driver => AdditionalMilestoneSearchField.Displayed);
+            wait.Until(Driver => AdditionalMilestoneSearchField.Displayed);
             AdditionalMilestoneSearchField.SendKeys(additionalMilestone);
             executor.ExecuteScript("arguments[0].click();", FilteredMilestone);
         }
@@ -204,7 +204,7 @@ namespace Playbook.Pages
         public void SelectInitiativeCategory(string initiativeCategory)
         {
             InitiativeCategoryDropdown.Click();
-            wait.Until(driver => InitiativeCategorySearchField.Displayed);
+            wait.Until(Driver => InitiativeCategorySearchField.Displayed);
             InitiativeCategorySearchField.SendKeys(initiativeCategory);
             executor.ExecuteScript("arguments[0].click();", InitiativeCategory);
         }

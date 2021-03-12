@@ -30,9 +30,9 @@ namespace Playbook.Pages
         #region Actions
         public void SelectOrganization(string organization)
         {
-            wait.Until(driver => OrganizationDropdown.Displayed);
+            wait.Until(Driver => OrganizationDropdown.Displayed);
             OrganizationDropdown.Click();
-            wait.Until(driver => SearchField.Displayed);
+            wait.Until(Driver => SearchField.Displayed);
             SearchField.SendKeys(organization);
             Organization.Click();
         }
@@ -45,31 +45,31 @@ namespace Playbook.Pages
 
         public bool InitiativeSavedSuccessfully()
         {
-            wait.Until(driver => SavingInitiativeMessage.Displayed);
-            return wait.Until(driver => InitiativeSavedMessage.Displayed);
+            wait.Until(Driver => SavingInitiativeMessage.Displayed);
+            return wait.Until(Driver => InitiativeSavedMessage.Displayed);
         }
 
         public void SelectInitiavesTab()
         {
-            wait.Until(driver => InitiativesTab.Displayed);
+            wait.Until(Driver => InitiativesTab.Displayed);
             InitiativesTab.Click();
         }
 
         public void NavigateToRevenueIncreaseInitiatives()
         {
-            wait.Until(driver => RevenueIncreaseButton.Displayed);
+            wait.Until(Driver => RevenueIncreaseButton.Displayed);
             RevenueIncreaseButton.Click();
         }
 
         public void NavigateToTargetPercentInitiatives()
         {
-            wait.Until(driver => TargetPercentButton.Displayed);
+            wait.Until(Driver => TargetPercentButton.Displayed);
             TargetPercentButton.Click();
         }
 
         public void NavigateToTargetValueInitiatives()
         {
-            wait.Until(driver => TargetValueButton.Displayed);
+            wait.Until(Driver => TargetValueButton.Displayed);
             TargetValueButton.Click();
         }
 
