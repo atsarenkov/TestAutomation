@@ -120,8 +120,8 @@ this.FeatureBackground();
                 TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
                             "Initiative Name",
                             "Description",
-                            "First Fiscal Year Impact",
-                            "Second Fiscal Year Impact",
+                            "Current Year Estimated Impact",
+                            "Next Year Estimated Impact",
                             "Custom Milestone Name",
                             "Initiative Category"});
                 table1.AddRow(new string[] {
@@ -177,8 +177,8 @@ this.FeatureBackground();
                 TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
                             "Initiative Name",
                             "Description",
-                            "First Fiscal Year Impact",
-                            "Second Fiscal Year Impact",
+                            "Current Year Estimated Impact",
+                            "Next Year Estimated Impact",
                             "Custom Milestone Name",
                             "Initiative Category"});
                 table2.AddRow(new string[] {
@@ -234,8 +234,8 @@ this.FeatureBackground();
                 TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
                             "Initiative Name",
                             "Description",
-                            "First Fiscal Year Impact",
-                            "Second Fiscal Year Impact",
+                            "Current Year Estimated Impact",
+                            "Next Year Estimated Impact",
                             "Custom Milestone Name",
                             "Initiative Category"});
                 table3.AddRow(new string[] {
@@ -291,8 +291,8 @@ this.FeatureBackground();
                 TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
                             "Initiative Name",
                             "Description",
-                            "First Fiscal Year Impact",
-                            "Second Fiscal Year Impact",
+                            "Current Year Estimated Impact",
+                            "Next Year Estimated Impact",
                             "Custom Milestone Name",
                             "Initiative Category"});
                 table4.AddRow(new string[] {

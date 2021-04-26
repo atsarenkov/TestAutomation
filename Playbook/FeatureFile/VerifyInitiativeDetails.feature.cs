@@ -322,7 +322,7 @@ this.FeatureBackground();
                             "Target Value",
                             "On Track",
                             "Revenue Cycle Improvement",
-                            "2021 Estimated 988.3K",
+                            "2021 878.3K of 988.3K",
                             "2022 878.3K of 1.6M",
                             "Target Value",
                             "Standart User"});

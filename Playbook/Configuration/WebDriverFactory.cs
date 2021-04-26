@@ -31,9 +31,9 @@ namespace Playbook.Configuration
         private static ChromeOptions GetChromeOptions()
         {
             var option = new ChromeOptions();
-            option.AddArgument("start-maximized");
-            //option.AddArgument("window-size=1920,1080");
-            //option.AddArgument("--headless");
+            //option.AddArgument("start-maximized");
+            option.AddArgument("window-size=1920,1080");
+            option.AddArgument("--headless");
             return option;
         }
 

@@ -26,7 +26,7 @@ namespace Playbook.Pages
         public static By TargetPercent = By.XPath("//*[text()='Target Percent']");
         public static By TargetValue = By.XPath("//*[text()='Target Value']");
         private readonly By InitiativeSearchField = By.XPath("//*[@class='au-table']//input");
-        private readonly By FilteredInitiative = By.XPath("//*[@class='au-table']//a");
+        private readonly By Initiative = By.XPath("//*[@class='au-table']//a");
         // Other elements
         private readonly By CreateInitiativeButton = By.XPath("//*[text()='Create Initiative']");
         private readonly By InitiativeSavedMessage = By.XPath("//*[text()='Initiative saved successfully']");
@@ -84,7 +84,7 @@ namespace Playbook.Pages
         public ManageInitiativePage OpenInitiave(string initiativeName)
         {
             InitiativeSearchField.SendKeys(initiativeName, Driver);
-            FilteredInitiative.Click(Driver);
+            Initiative.Click(Driver);
             return new ManageInitiativePage(Driver);
         }
         #endregion

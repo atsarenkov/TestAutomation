@@ -37,7 +37,7 @@ namespace Playbook.Pages
         private readonly By CustomMilestoneDate = By.XPath("//*[@class='milestone-list']/descendant::input[3]");
         private readonly By DefaultMilestoneDropdown = By.XPath("//*[@class='milestone-list']/descendant::button[6]");
         private readonly By DefaultMilestoneSearchField = By.XPath("//*[@class='plain-dropdown-menu-with-search']/descendant::input");
-        private readonly By FilteredMilestone = By.XPath("//*[@class='plain-dropdown-option']");
+        private readonly By Milestone = By.XPath("//*[@class='plain-dropdown-option']");
         private readonly By RemoveMilestoneButton = By.CssSelector("div > div:nth-of-type(5) .icon-close");
         private readonly By AddAnotherMilestoneButton = By.XPath("//*[text()='Add Another Milestone']");
         private readonly By AdditionalMilestoneDropdown = By.XPath("//*[@class='milestone-list']/descendant::div[74]");
@@ -148,7 +148,7 @@ namespace Playbook.Pages
         {
             DefaultMilestoneDropdown.Click(Driver);
             DefaultMilestoneSearchField.SendKeys(defaultMilestone, Driver);
-            FilteredMilestone.Click(Driver);
+            Milestone.Click(Driver);
         }
 
         public void RemoveMilestone()
@@ -162,7 +162,7 @@ namespace Playbook.Pages
             AdditionalMilestoneDropdown.Click(Driver);
             WaitUntilElementIsVisible(AdditionalMilestoneSearchField);
             AdditionalMilestoneSearchField.SendKeys(additionalMilestone, Driver);
-            FilteredMilestone.Click(Driver);
+            Milestone.Click(Driver);
         }
 
         public void SelectSumRealizedImpact()
