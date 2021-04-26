@@ -1,6 +1,5 @@
 ﻿using System;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Support.UI;
 using Playbook.BaseClasses;
 
 namespace Playbook.Pages
@@ -9,155 +8,119 @@ namespace Playbook.Pages
     {
         public ManageInitiativePage(IWebDriver driver) : base(driver) { }
 
-        readonly WebDriverWait wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(10));
-
         #region WebElements
-        IWebElement DeleteInitiativeButton => Driver.FindElement(By.XPath("//*[text()='Delete Initiative']"));
-        IWebElement DeleteButton => Driver.FindElement(By.XPath("//*[text()='Delete']"));
-        IWebElement EditInitiativeButton => Driver.FindElement(By.XPath("//*[text()='Edit Initiative']"));
+        private readonly By DeleteInitiativeButton = By.XPath("//*[text()='Delete Initiative']");
+        private readonly By DeleteButton = By.XPath("//*[text()='Delete']");
+        private readonly By EditInitiativeButton = By.XPath("//*[text()='Edit Initiative']");
         // Initiative Details
-        IWebElement Name => Driver.FindElement(By.XPath("//*[@class='description-title']"));
-        IWebElement FinanceStatus => Driver.FindElement(By.XPath("//*[@class='description-finance-status']"));
-        IWebElement EnterRealizedImpactButton => Driver.FindElement(By.XPath("//*[text()='Enter Realized Impact']"));
-        IWebElement Type => Driver.FindElement(By.XPath("//*[contains(text(),'Type')]/following-sibling::*"));
-        IWebElement Status => Driver.FindElement(By.XPath("//*[contains(text(),'Status')]/following-sibling::*"));
-        IWebElement Categoty => Driver.FindElement(By.XPath("//*[contains(text(),'Category')]/following-sibling::*"));
-        IWebElement FirstFiscalYearImpactValue => Driver.FindElement(By.XPath("//*[@class='impact-year__row']"));
-        IWebElement SecondFiscalYearImpactValue => Driver.FindElement(By.XPath("//*[@class='impact-year__row']/following-sibling::*"));
-        IWebElement Description => Driver.FindElement(By.XPath("//*[contains(text(),'Description')]/following-sibling::*"));
-        IWebElement Lead => Driver.FindElement(By.XPath("//*[contains(text(),'Leads')]/following-sibling::*"));
-        IWebElement Stakeholder => Driver.FindElement(By.XPath("//*[contains(text(),'Stakeholders')]/following-sibling::*"));
-        IWebElement CreatedByValue => Driver.FindElement(By.XPath("//*[normalize-space() = 'Created By']/following-sibling::*"));
-        IWebElement CreatedDateValue => Driver.FindElement(By.XPath("//*[normalize-space() = 'Created Date']/following-sibling::*"));
-        IWebElement ModifiedByValue => Driver.FindElement(By.XPath("//*[normalize-space() = 'Modified By']/following-sibling::*"));
-        IWebElement ModifiedDateValue => Driver.FindElement(By.XPath("//*[normalize-space() = 'Modified Date']/following-sibling::*"));
-        // "Milestones" tab
-        IWebElement FirstMilestoneValue => Driver.FindElement(By.XPath("//*[@class='playbook-initiative__milestones__steps']/descendant::div[1]"));
-        IWebElement SecondMilestoneValue => Driver.FindElement(By.XPath("//*[@class='playbook-initiative__milestones__steps']/descendant::div[6]"));
-        IWebElement ThirdMilestoneValue => Driver.FindElement(By.XPath("//*[@class='playbook-initiative__milestones__steps']/descendant::div[11]"));
-        IWebElement FourthMilestoneValue => Driver.FindElement(By.XPath("//*[@class='playbook-initiative__milestones__steps']/descendant::div[16]"));
-        IWebElement FifthMilestoneValue => Driver.FindElement(By.XPath("//*[@class='playbook-initiative__milestones__steps']/descendant::div[21]"));
-        IWebElement SixthMilestoneValue => Driver.FindElement(By.XPath("//*[@class='playbook-initiative__milestones__steps']/descendant::div[26]"));
-        IWebElement SeventhMilestoneValue => Driver.FindElement(By.XPath("//*[@class='playbook-initiative__milestones__steps']/descendant::div[31]"));
+        private readonly By Name = By.XPath("//*[@class='description-title']");
+        private readonly By FinanceStatus = By.XPath("//*[@class='description-finance-status']");
+        private readonly By EnterRealizedImpactButton = By.XPath("//*[text()='Enter Realized Impact']");
+        private readonly By Type = By.XPath("//*[contains(text(),'Type')]/following-sibling::*");
+        private readonly By Status = By.XPath("//*[contains(text(),'Status')]/following-sibling::*");
+        private readonly By Categoty = By.XPath("//*[contains(text(),'Category')]/following-sibling::*");
+        private readonly By CurrentYearEstimatedImpactValue = By.XPath("//*[text()='" + BaseClass.CurrentYear + "']/parent::*");
+        private readonly By NextYearEstimatedImpactValue = By.XPath("//*[text()='" + BaseClass.NextYear + "']/parent::*");
+        private readonly By Description = By.XPath("//*[contains(text(),'Description')]/following-sibling::*");
+        private readonly By Lead = By.XPath("//*[contains(text(),'Leads')]/following-sibling::*");
+        private readonly By Stakeholder = By.XPath("//*[contains(text(),'Stakeholders')]/following-sibling::*");
+        private readonly By CreatedByValue = By.XPath("//*[normalize-space() = 'Created By']/following-sibling::*");
+        private readonly By CreatedDateValue = By.XPath("//*[normalize-space() = 'Created Date']/following-sibling::*");
+        private readonly By ModifiedByValue = By.XPath("//*[normalize-space() = 'Modified By']/following-sibling::*");
+        private readonly By ModifiedDateValue = By.XPath("//*[normalize-space() = 'Modified Date']/following-sibling::*");
+        // "Reporting" tab
+        private readonly By ReportingButton = By.XPath("//*[text()='Reporting']");
+        public static By ReportingSection = By.XPath("//*[@class='playbook-initiative__reporting']");
         #endregion
 
         #region Actions
         public string InitiativeName()
         {
-            return wait.Until(Driver => Name.Text);
+            WaitUntilElementIsVisible(Name);
+            return Name.Text(Driver);
         }
 
         public string FinanceApprovalStatus()
         {
-            return FinanceStatus.Text;
+            return FinanceStatus.Text(Driver);
         }
 
         public bool EnterRealizedImpactButtonEnabled()
         {
-            return EnterRealizedImpactButton.Enabled;
+            return EnterRealizedImpactButton.Enabled(Driver);
         }
 
         public string InitiativeType()
         {
-            return Type.Text;
+            return Type.Text(Driver);
         }
 
         public string InitiativeStatus()
         {
-            return Status.Text;
+            return Status.Text(Driver);
         }
 
         public string InitiativeCategory()
         {
-            return Categoty.Text;
+            return Categoty.Text(Driver);
         }
 
-        public string FirstFiscalYearImpact()
+        public string CurrentYearEstimatedImpact()
         {
-            return FirstFiscalYearImpactValue.Text.Replace(Environment.NewLine, " ");
+            return CurrentYearEstimatedImpactValue.Text(Driver).Replace(Environment.NewLine, " ");
         }
 
-        public string SecondFiscalYearImpact()
+        public string NextYearEstimatedImpact()
         {
-            return SecondFiscalYearImpactValue.Text.Replace(Environment.NewLine, " ");
+            return NextYearEstimatedImpactValue.Text(Driver).Replace(Environment.NewLine, " ");
         }
 
         public string InitiativeDescription()
         {
-            return Description.Text;
+            return Description.Text(Driver);
         }
 
         public string InitiativeLead()
         {
-            return Lead.Text.Replace(Environment.NewLine, ", ");
+            return Lead.Text(Driver).Replace(Environment.NewLine, ", ");
         }
 
         public string InitiativeStakeholder()
         {
-            return Stakeholder.Text.Replace(Environment.NewLine, ", ");
+            return Stakeholder.Text(Driver).Replace(Environment.NewLine, ", ");
         }
 
         public string CreatedBy()
         {
-            return CreatedByValue.Text;
+            return CreatedByValue.Text(Driver);
         }
 
         public string CreatedDate()
         {
-            return CreatedDateValue.Text;
+            return CreatedDateValue.Text(Driver);
         }
 
         public string ModifiedBy()
         {
-            return ModifiedByValue.Text;
+            return ModifiedByValue.Text(Driver);
         }
 
         public string ModifiedDate()
         {
-            return ModifiedDateValue.Text;
+            return ModifiedDateValue.Text(Driver);
         }
 
-        public string FirstMilestone()
+        public void NavigateToReportingTab()
         {
-            return FirstMilestoneValue.Text.Replace(Environment.NewLine, " ");
-        }
-
-        public string SecondMilestone()
-        {
-            wait.Until(Driver => SecondMilestoneValue.Displayed);
-            return SecondMilestoneValue.Text.Replace(Environment.NewLine, " ");
-        }
-
-        public string ThirdMilestone()
-        {
-            return ThirdMilestoneValue.Text.Replace(Environment.NewLine, ", ");
-        }
-
-        public string FourthMilestone()
-        {
-            return FourthMilestoneValue.Text.Replace(Environment.NewLine, ", ");
-        }
-
-        public string FifthMilestone()
-        {
-            return FifthMilestoneValue.Text.Replace(Environment.NewLine, ", ");
-        }
-
-        public string SixthMilestone()
-        {
-            return SixthMilestoneValue.Text.Replace(Environment.NewLine, ", ");
-        }
-
-        public string SeventhMilestone()
-        {
-            return SeventhMilestoneValue.Text.Replace(Environment.NewLine, ", ");
+            WaitUntilElementIsClickable(ReportingButton);
+            ReportingButton.Click(Driver);
         }
 
         public void DeleteInitiative()
         {
-            wait.Until(Driver => DeleteInitiativeButton.Displayed);
-            DeleteInitiativeButton.Click();
-            DeleteButton.Click();
+            WaitUntilElementIsClickable(DeleteInitiativeButton);
+            DeleteInitiativeButton.Click(Driver);
+            DeleteButton.Click(Driver);
         }
         #endregion
     }

@@ -21,12 +21,14 @@ namespace Playbook.FeatureFile
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("Create Initiative")]
+    [NUnit.Framework.CategoryAttribute("FunctionalTests")]
     public partial class CreateInitiativeFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-        private string[] _featureTags = ((string[])(null));
+        private string[] _featureTags = new string[] {
+                "FunctionalTests"};
         
 #line 1 "CreateInitiative.feature"
 #line hidden
@@ -35,7 +37,8 @@ namespace Playbook.FeatureFile
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "FeatureFile", "Create Initiative", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "FeatureFile", "Create Initiative", null, ProgrammingLanguage.CSharp, new string[] {
+                        "FunctionalTests"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -75,23 +78,23 @@ namespace Playbook.FeatureFile
         
         public virtual void FeatureBackground()
         {
-#line 3
-#line hidden
 #line 4
+#line hidden
+#line 5
  testRunner.Given("A user opens the initiative modal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Create Cost Reduction Initiative")]
-        [NUnit.Framework.CategoryAttribute("SmokeTest")]
+        [NUnit.Framework.CategoryAttribute("SmokeTests")]
         public virtual void CreateCostReductionInitiative()
         {
             string[] tagsOfScenario = new string[] {
-                    "SmokeTest"};
+                    "SmokeTests"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Create Cost Reduction Initiative", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 7
+#line 8
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -111,7 +114,7 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 3
+#line 4
 this.FeatureBackground();
 #line hidden
                 TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
@@ -128,10 +131,10 @@ this.FeatureBackground();
                             "1125580",
                             "Capacity Utilization",
                             "SRT- Supplies"});
-#line 8
+#line 9
  testRunner.When("A user enters the initiative details", ((string)(null)), table1, "When ");
 #line hidden
-#line 11
+#line 12
  testRunner.Then("A user verifies the the initiative has been created", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -145,7 +148,7 @@ this.FeatureBackground();
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Create Revenue Increase Initiative", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 13
+#line 14
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -165,10 +168,10 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 3
+#line 4
 this.FeatureBackground();
 #line hidden
-#line 14
+#line 15
  testRunner.Given("A user selects revenue increase initiative type", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
                 TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
@@ -185,10 +188,10 @@ this.FeatureBackground();
                             "675000",
                             "Budget Variance",
                             "SRT- LOS Strategy"});
-#line 15
+#line 16
  testRunner.When("A user enters the initiative details", ((string)(null)), table2, "When ");
 #line hidden
-#line 18
+#line 19
  testRunner.Then("A user verifies the the initiative has been created", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -202,7 +205,7 @@ this.FeatureBackground();
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Create Target Percent Initiative", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 20
+#line 21
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -222,10 +225,10 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 3
+#line 4
 this.FeatureBackground();
 #line hidden
-#line 21
+#line 22
  testRunner.Given("A user selects target percent initiative type", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
                 TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
@@ -242,10 +245,10 @@ this.FeatureBackground();
                             "7.5",
                             "Process / Practice Variation",
                             "Pharmacy Improvement"});
-#line 22
+#line 23
  testRunner.When("A user enters the initiative details", ((string)(null)), table3, "When ");
 #line hidden
-#line 25
+#line 26
  testRunner.Then("A user verifies the the initiative has been created", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -259,7 +262,7 @@ this.FeatureBackground();
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Create Target Value Initiative", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 27
+#line 28
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -279,10 +282,10 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 3
+#line 4
 this.FeatureBackground();
 #line hidden
-#line 28
+#line 29
  testRunner.Given("A user selects target value initiative type", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
                 TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
@@ -299,10 +302,10 @@ this.FeatureBackground();
                             "988255",
                             "Root Cause Analysis",
                             "Revenue Cycle Improvement"});
-#line 29
+#line 30
  testRunner.When("A user enters the initiative details", ((string)(null)), table4, "When ");
 #line hidden
-#line 32
+#line 33
  testRunner.Then("A user verifies the the initiative has been created", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }

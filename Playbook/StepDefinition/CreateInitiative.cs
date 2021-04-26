@@ -20,19 +20,19 @@ namespace Playbook.StepDefinition
         [Given(@"A user selects revenue increase initiative type")]
         public void SelectRevenueIncreaseInitiativeType()
         {
-            new InitiativeModal(Driver).SelectRevenueIncreaseInitiative();
+            new InitiativeModal(Driver).SelectInitiativeType(InitiativeModal.RevenueIncrease);
         }
 
         [Given(@"A user selects target percent initiative type")]
         public void SelectTargetPercentInitiativeType()
         {
-            new InitiativeModal(Driver).SelectTargetPercentInitiative();
+            new InitiativeModal(Driver).SelectInitiativeType(InitiativeModal.TargetPercent);
         }
 
         [Given(@"A user selects target value initiative type")]
         public void SelectTargetValueInitiativeType()
         {
-            new InitiativeModal(Driver).SelectTargetValueInitiative();
+            new InitiativeModal(Driver).SelectInitiativeType(InitiativeModal.TargetValue);
         }
 
         [When("A user enters the initiative details")]
@@ -44,8 +44,8 @@ namespace Playbook.StepDefinition
                 initiativeModal.EnterInitiativeName(row["Initiative Name"]);
                 initiativeModal.EnterInitiativeDescription(row["Description"]);
                 initiativeModal.ProceedToNextTab();
-                initiativeModal.EnterFirstFiscalYearImpactValue(row["First Fiscal Year Impact"]);
-                initiativeModal.EnterSecondFiscalYearImpactValue(row["Second Fiscal Year Impact"]);
+                initiativeModal.EnterCurrentYearEstimatedImpactValue(row["Current Year Estimated Impact"]);
+                initiativeModal.EnterNextYearEstimatedImpactValue(row["Second Fiscal Year Impact"]);
                 initiativeModal.ProceedToNextTab();
                 initiativeModal.SetCustomMilestone(row["Custom Milestone Name"], DueDate);
                 initiativeModal.ProceedToNextTab();

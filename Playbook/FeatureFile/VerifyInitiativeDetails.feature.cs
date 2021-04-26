@@ -21,12 +21,14 @@ namespace Playbook.FeatureFile
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("Verify Initiative Details")]
+    [NUnit.Framework.CategoryAttribute("FunctionalTests")]
     public partial class VerifyInitiativeDetailsFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-        private string[] _featureTags = ((string[])(null));
+        private string[] _featureTags = new string[] {
+                "FunctionalTests"};
         
 #line 1 "VerifyInitiativeDetails.feature"
 #line hidden
@@ -35,7 +37,8 @@ namespace Playbook.FeatureFile
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "FeatureFile", "Verify Initiative Details", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "FeatureFile", "Verify Initiative Details", null, ProgrammingLanguage.CSharp, new string[] {
+                        "FunctionalTests"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -75,23 +78,23 @@ namespace Playbook.FeatureFile
         
         public virtual void FeatureBackground()
         {
-#line 3
-#line hidden
 #line 4
+#line hidden
+#line 5
  testRunner.Given("A user opens the initiative tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Verify Cost Reduction Initiative Details")]
-        [NUnit.Framework.CategoryAttribute("SmokeTest")]
+        [NUnit.Framework.CategoryAttribute("SmokeTests")]
         public virtual void VerifyCostReductionInitiativeDetails()
         {
             string[] tagsOfScenario = new string[] {
-                    "SmokeTest"};
+                    "SmokeTests"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify Cost Reduction Initiative Details", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 7
+#line 8
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -111,7 +114,7 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 3
+#line 4
 this.FeatureBackground();
 #line hidden
                 TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
@@ -120,8 +123,8 @@ this.FeatureBackground();
                             "Initiative Type",
                             "Initiative Status",
                             "Initiative Category",
-                            "First Fiscal Year Impact",
-                            "Second Fiscal Year Impact",
+                            "Current Year Estimated Impact",
+                            "Next Year Estimated Impact",
                             "Initiative Description",
                             "Created By"});
                 table5.AddRow(new string[] {
@@ -130,14 +133,14 @@ this.FeatureBackground();
                             "Cost Reduction",
                             "On Track",
                             "SRT- Supplies",
-                            "2020 Estimated $1M",
-                            "2021 Estimated $1.1M",
+                            "2021 Estimated $1M",
+                            "2022 Estimated $1.1M",
                             "Cost Reduction",
                             "Standart User"});
-#line 8
+#line 9
  testRunner.Then("A user verifies the initiative details", ((string)(null)), table5, "Then ");
 #line hidden
-#line 11
+#line 12
  testRunner.And("A user verifies the created date", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
@@ -151,7 +154,7 @@ this.FeatureBackground();
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify Revenue Increase Initiative Details", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 13
+#line 14
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -171,10 +174,10 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 3
+#line 4
 this.FeatureBackground();
 #line hidden
-#line 14
+#line 15
  testRunner.When("A user navigates to the revenue increase initiative page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
                 TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
@@ -183,8 +186,8 @@ this.FeatureBackground();
                             "Initiative Type",
                             "Initiative Status",
                             "Initiative Category",
-                            "First Fiscal Year Impact",
-                            "Second Fiscal Year Impact",
+                            "Current Year Estimated Impact",
+                            "Next Year Estimated Impact",
                             "Initiative Description",
                             "Created By"});
                 table6.AddRow(new string[] {
@@ -193,14 +196,14 @@ this.FeatureBackground();
                             "Revenue Increase",
                             "On Track",
                             "SRT- LOS Strategy",
-                            "2020 Estimated $560.6K",
-                            "2021 Estimated $675K",
+                            "2021 Estimated $560.6K",
+                            "2022 Estimated $675K",
                             "Revenue Increase",
                             "Standart User"});
-#line 15
+#line 16
  testRunner.Then("A user verifies the initiative details", ((string)(null)), table6, "Then ");
 #line hidden
-#line 18
+#line 19
  testRunner.And("A user verifies the created date", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
@@ -214,7 +217,7 @@ this.FeatureBackground();
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify Target Percent Initiative Details", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 20
+#line 21
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -234,10 +237,10 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 3
+#line 4
 this.FeatureBackground();
 #line hidden
-#line 21
+#line 22
  testRunner.When("A user navigates to the target percent initiative page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
                 TechTalk.SpecFlow.Table table7 = new TechTalk.SpecFlow.Table(new string[] {
@@ -246,8 +249,8 @@ this.FeatureBackground();
                             "Initiative Type",
                             "Initiative Status",
                             "Initiative Category",
-                            "First Fiscal Year Impact",
-                            "Second Fiscal Year Impact",
+                            "Current Year Estimated Impact",
+                            "Next Year Estimated Impact",
                             "Initiative Description",
                             "Created By"});
                 table7.AddRow(new string[] {
@@ -255,15 +258,15 @@ this.FeatureBackground();
                             "Approved by Finance",
                             "Target Percent",
                             "On Track",
-                            "Select value",
-                            "2020 Estimated 6%",
-                            "2021 5.3% of 7.5%",
+                            "Pharmacy Improvement",
+                            "2021 Estimated 6%",
+                            "2022 5.3% of 7.5%",
                             "Target Percent",
                             "Standart User"});
-#line 22
+#line 23
  testRunner.Then("A user verifies the initiative details", ((string)(null)), table7, "Then ");
 #line hidden
-#line 25
+#line 26
  testRunner.And("A user verifies the created date", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
@@ -277,7 +280,7 @@ this.FeatureBackground();
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify Target Value Initiative Details", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 27
+#line 28
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -297,10 +300,10 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 3
+#line 4
 this.FeatureBackground();
 #line hidden
-#line 28
+#line 29
  testRunner.When("A user navigates to the target value initiative page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
                 TechTalk.SpecFlow.Table table8 = new TechTalk.SpecFlow.Table(new string[] {
@@ -309,8 +312,8 @@ this.FeatureBackground();
                             "Initiative Type",
                             "Initiative Status",
                             "Initiative Category",
-                            "First Fiscal Year Impact",
-                            "Second Fiscal Year Impact",
+                            "Current Year Estimated Impact",
+                            "Next Year Estimated Impact",
                             "Initiative Description",
                             "Created By"});
                 table8.AddRow(new string[] {
@@ -318,15 +321,15 @@ this.FeatureBackground();
                             "Approved by Finance",
                             "Target Value",
                             "On Track",
-                            "Select value",
-                            "2020 Estimated 988.3K",
-                            "2021 878.3K of 1.6M",
+                            "Revenue Cycle Improvement",
+                            "2021 Estimated 988.3K",
+                            "2022 878.3K of 1.6M",
                             "Target Value",
                             "Standart User"});
-#line 29
+#line 30
  testRunner.Then("A user verifies the initiative details", ((string)(null)), table8, "Then ");
 #line hidden
-#line 32
+#line 33
  testRunner.And("A user verifies the created date", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }

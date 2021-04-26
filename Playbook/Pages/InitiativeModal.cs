@@ -1,150 +1,129 @@
 ﻿using OpenQA.Selenium;
-using OpenQA.Selenium.Interactions;
-using OpenQA.Selenium.Support.UI;
 using Playbook.BaseClasses;
-using System;
 
 namespace Playbook.Pages
 {
     public class InitiativeModal : BasePage
     {
         public InitiativeModal(IWebDriver driver) : base(driver) { }
-
-        readonly IJavaScriptExecutor executor = ((IJavaScriptExecutor)Driver);
-
-        readonly Actions action = new Actions(Driver);
-
-        readonly WebDriverWait wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(10));
-
+        
         #region WebElements
-        IWebElement NextButton => Driver.FindElement(By.XPath("//*[text()='Next']"));
-        IWebElement CreateButton => Driver.FindElement(By.XPath("//*[text()='Create']"));
+        private readonly By NextButton = By.XPath("//*[text()='Next']");
+        private readonly By CreateButton = By.XPath("//*[text()='Create']");
         // "Describe The Initiative" Tab
-        IWebElement NameField => Driver.FindElement(By.XPath("//*[@placeholder='Enter a short name']"));
-        IWebElement InitiativeTypeDropdown => Driver.FindElement(By.XPath("//*[@class='playbook-new-initiative-form__field']//*[@class='dropdown-toggler__value ellipsis']"));
-        IWebElement RevenueIncreaseInitiative => Driver.FindElement(By.XPath("//*[text()='Revenue Increase ($)']"));
-        IWebElement TargetPercentInitiative => Driver.FindElement(By.XPath("//*[text()='Target Percent (%)']"));
-        IWebElement TargetValueInitiative => Driver.FindElement(By.XPath("//*[text()='Target Value']"));
-        IWebElement DescriptionField => Driver.FindElement(By.XPath("//*[@class='textarea-field']//textarea"));
-        IWebElement AddLeadButton => Driver.FindElement(By.XPath("//*[text()='lead']"));
-        IWebElement TeamMembersDropdown => Driver.FindElement(By.XPath("//*[text()='Find team members']"));
-        IWebElement TeamMembersSearchField => Driver.FindElement(By.XPath("//*[@class='plain-dropdown-menu-with-search']//descendant::input"));
-        IWebElement TeamMember => Driver.FindElement(By.XPath("//*[@class='plain-dropdown-option plain-dropdown-option--focused']"));
-        IWebElement AddStakeholderButton => Driver.FindElement(By.XPath("//*[text()='stakeholder']"));
+        private readonly By NameField = By.XPath("//*[@placeholder='Enter a short name']");
+        private readonly By InitiativeTypeDropdown = By.XPath("//*[@class='playbook-new-initiative-form__field']//*[@class='dropdown-toggler__value ellipsis']");
+        public static By RevenueIncrease = By.XPath("//*[text()='Revenue Increase ($)']");
+        public static By TargetPercent = By.XPath("//*[text()='Target Percent (%)']");
+        public static By TargetValue = By.XPath("//*[text()='Target Value']");
+        private readonly By DescriptionField = By.XPath("//*[@class='textarea-field']//textarea");
+        private readonly By AddLeadButton = By.XPath("//*[text()='lead']");
+        private readonly By TeamMembersDropdown = By.XPath("//*[text()='Find team members']");
+        private readonly By TeamMembersSearchField = By.XPath("//*[@class='plain-dropdown-menu-with-search']//descendant::input");
+        private readonly By TeamMember = By.XPath("//*[@class='plain-dropdown-option plain-dropdown-option--focused']");
+        private readonly By AddStakeholderButton = By.XPath("//*[text()='stakeholder']");
         // "Estimate Impact" tab
-        IWebElement CurrentImpactValue => Driver.FindElement(By.Id("current_budget_impact_amount"));
-        IWebElement FirstFiscalYearImpactValue => Driver.FindElement(By.XPath("//*[@class='playbook-budget-impact-form']/descendant::input[1]"));
-        IWebElement AddYearButton => Driver.FindElement(By.XPath("//*[text()='Add Year']"));
-        IWebElement SelectYear => Driver.FindElement(By.XPath("//*[@class='plain-dropdown-option']"));
-        IWebElement SecondFiscalYearImpactValue => Driver.FindElement(By.XPath("//*[@class='playbook-budget-impact-form']/descendant::input[2]"));
-        IWebElement FinanceApprovalCheckbox => Driver.FindElement(By.XPath("//*[@class='react-checkbox playbook-budget-impact-form__checkbox']"));
+        private readonly By CurrentImpactField = By.Id("current_budget_impact_amount");
+        private readonly By AddYearButton = By.XPath("//*[text()='Add Year']");
+        private readonly By CurrentYearEstimatedImpactField = By.XPath("//*[text()='" + BaseClass.CurrentYear + "']/following-sibling::div//input");
+        private readonly By CurrentYear = By.XPath("//*[@class='dropdown-menu']//*[text()='"+ BaseClass.CurrentYear + "']");
+        private readonly By NextYearEstimatedImpactField = By.XPath("//*[text()='" + BaseClass.NextYear + "']/following-sibling::div//input");
+        private readonly By NextYear = By.XPath("//*[@class='dropdown-menu']//*[text()='" + BaseClass.NextYear + "']");
+        private readonly By FinanceApprovalCheckbox = By.XPath("//*[@class='react-checkbox playbook-budget-impact-form__checkbox']");
         // "Set Milestones" tab
-        IWebElement CustomMilestoneDropdown => Driver.FindElement(By.XPath("//*[@class='milestone-list']/descendant::div[19]"));
-        IWebElement AddCustomMilestoneButton => Driver.FindElement(By.XPath("//*[text()='Add Custom Milestone']"));
-        IWebElement CustomMilestoneField => Driver.FindElement(By.XPath("//*[@class='milestone-list']/descendant::input[2]"));
-        IWebElement CustomMilestoneDate => Driver.FindElement(By.XPath("//*[@class='milestone-list']/descendant::input[3]"));
-        IWebElement DefaultMilestoneDropdown => Driver.FindElement(By.XPath("//*[@class='milestone-list']/descendant::button[6]"));
-        IWebElement DefaultMilestoneSearchField => Driver.FindElement(By.CssSelector("div:nth-child(14) input"));
-        IWebElement FilteredMilestone => Driver.FindElement(By.XPath("//*[@class='plain-dropdown-option']"));
-        IWebElement RemoveMilestoneButton => Driver.FindElement(By.CssSelector("div > div:nth-of-type(5) .icon-close"));
-        IWebElement AddAnotherMilestoneButton => Driver.FindElement(By.XPath("//*[text()='Add Another Milestone']"));
-        IWebElement AdditionalMilestoneDropdown => Driver.FindElement(By.XPath("//*[@class='milestone-list']/descendant::div[74]"));
-        IWebElement AdditionalMilestoneSearchField => Driver.FindElement(By.CssSelector("div:nth-child(15) input"));
+        private readonly By CustomMilestoneDropdown = By.XPath("//*[@class='milestone-list']/descendant::div[19]");
+        private readonly By AddCustomMilestoneButton = By.XPath("//*[text()='Add Custom Milestone']");
+        private readonly By CustomMilestoneField = By.XPath("//*[@class='milestone-list']/descendant::input[2]");
+        private readonly By CustomMilestoneDate = By.XPath("//*[@class='milestone-list']/descendant::input[3]");
+        private readonly By DefaultMilestoneDropdown = By.XPath("//*[@class='milestone-list']/descendant::button[6]");
+        private readonly By DefaultMilestoneSearchField = By.XPath("//*[@class='plain-dropdown-menu-with-search']/descendant::input");
+        private readonly By FilteredMilestone = By.XPath("//*[@class='plain-dropdown-option']");
+        private readonly By RemoveMilestoneButton = By.CssSelector("div > div:nth-of-type(5) .icon-close");
+        private readonly By AddAnotherMilestoneButton = By.XPath("//*[text()='Add Another Milestone']");
+        private readonly By AdditionalMilestoneDropdown = By.XPath("//*[@class='milestone-list']/descendant::div[74]");
+        private readonly By AdditionalMilestoneSearchField = By.CssSelector("div:nth-child(15) input");
         // "Initiative Settings" tab
-        IWebElement RealizedImpactCheckbox => Driver.FindElement(By.XPath("//*[@class='react-checkbox']"));
-        IWebElement InitiativeCategoryDropdown => Driver.FindElement(By.XPath("//*[text()='Choose a category']"));
-        IWebElement InitiativeCategorySearchField => Driver.FindElement(By.XPath("//*[@class='plain-dropdown-menu-with-search']//input"));
-        IWebElement InitiativeCategory => Driver.FindElement(By.XPath("//*[@class='plain-dropdown-option--search-find']"));
+        private readonly By RealizedImpactCheckbox = By.XPath("//*[@class='react-checkbox']");
+        private readonly By InitiativeCategoryDropdown = By.XPath("//*[text()='Choose a category']");
+        private readonly By InitiativeCategorySearchField = By.XPath("//*[@class='plain-dropdown-menu-with-search']//input");
+        private readonly By InitiativeCategory = By.XPath("//*[@class='plain-dropdown-option--search-find']");
         #endregion
 
         #region Actions
         public void EnterInitiativeName(string initiativeName)
         {
-            wait.Until(Driver => NameField.Displayed);
-            NameField.SendKeys(initiativeName);
+            WaitUntilElementIsVisible(NameField);
+            NameField.SendKeys(initiativeName, Driver);
         }
 
         public void EnterInitiativeDescription(string initiativeDescription)
         {
-            DescriptionField.SendKeys(initiativeDescription);
+            DescriptionField.SendKeys(initiativeDescription, Driver);
         }
 
-        public void SelectRevenueIncreaseInitiative()
+        public void SelectInitiativeType(By InitiativeType)
         {
-            wait.Until(Driver => InitiativeTypeDropdown.Displayed);
-            InitiativeTypeDropdown.Click();
-            wait.Until(Driver => RevenueIncreaseInitiative.Displayed);
-            RevenueIncreaseInitiative.Click();
-        }
-
-        public void SelectTargetPercentInitiative()
-        {
-            wait.Until(Driver => InitiativeTypeDropdown.Displayed);
-            InitiativeTypeDropdown.Click();
-            wait.Until(Driver => TargetPercentInitiative.Displayed);
-            TargetPercentInitiative.Click();
-        }
-
-        public void SelectTargetValueInitiative()
-        {
-            wait.Until(Driver => InitiativeTypeDropdown.Displayed);
-            InitiativeTypeDropdown.Click();
-            wait.Until(Driver => TargetValueInitiative.Displayed);
-            TargetValueInitiative.Click();
+            WaitUntilElementIsClickable(InitiativeTypeDropdown);
+            InitiativeTypeDropdown.Click(Driver);
+            WaitUntilElementIsClickable(InitiativeType);
+            InitiativeType.Click(Driver);
         }
 
         public void SelectTeamLeads(string teamLead)
         {
-            wait.Until(Driver => AddLeadButton.Enabled);
-            executor.ExecuteScript("arguments[0].click();", AddLeadButton);
+            WaitUntilElementIsClickable(AddLeadButton);
+            AddLeadButton.JSExecutorClick(Driver);
             SelectTeamMember(teamLead);
         }
 
         public void SelectStakeholders(string stakeholder)
         {
-            wait.Until(Driver => AddStakeholderButton.Enabled);
-            executor.ExecuteScript("arguments[0].click();", AddStakeholderButton);
+            WaitUntilElementIsClickable(AddStakeholderButton);
+            AddStakeholderButton.JSExecutorClick(Driver);
             SelectTeamMember(stakeholder);
         }
 
-        public void SelectTeamMember(string teamMember)
+        private void SelectTeamMember(string teamMember)
         {
-            TeamMembersDropdown.Click();
+            TeamMembersDropdown.Click(Driver);
             try
             {
-                wait.Until(Driver => TeamMembersSearchField.Displayed);
-                TeamMembersSearchField.SendKeys(teamMember);
+                WaitUntilElementIsVisible(TeamMembersSearchField);
+                TeamMembersSearchField.SendKeys(teamMember, Driver);
                 IAlert alert = Driver.SwitchTo().Alert();
-                alert.Dismiss();
+                for (int i = 0; i <= 6; i++)
+                {
+                    alert.Dismiss();
+                }
             }
-            catch (NoAlertPresentException)
-            {
-                Console.WriteLine("No such alert");
-            }
-            executor.ExecuteScript("arguments[0].click();", TeamMember);
+            catch (NoAlertPresentException) { }
+            TeamMember.JSExecutorClick(Driver);
         }
 
         public void EnterCurrentImpactValue(string impactValue)
         {
-            CurrentImpactValue.SendKeys(impactValue);
+            CurrentImpactField.SendKeys(impactValue, Driver);
         }
 
-        public void EnterFirstFiscalYearImpactValue(string impactValue)
+        public void EnterCurrentYearEstimatedImpactValue(string impactValue)
         {
-            FirstFiscalYearImpactValue.SendKeys(impactValue);
+            AddYearButton.Click(Driver);
+            WaitUntilElementIsClickable(CurrentYear);
+            CurrentYear.Click(Driver);
+            CurrentYearEstimatedImpactField.SendKeys(impactValue, Driver);
         }
 
-        public void EnterSecondFiscalYearImpactValue(string impactValue)
+        public void EnterNextYearEstimatedImpactValue(string impactValue)
         {
-            AddYearButton.Click();
-            wait.Until(Driver => SelectYear.Displayed);
-            SelectYear.Click();
-            SecondFiscalYearImpactValue.SendKeys(impactValue);
+            AddYearButton.Click(Driver);
+            WaitUntilElementIsClickable(NextYear);
+            NextYear.Click(Driver);
+            NextYearEstimatedImpactField.SendKeys(impactValue, Driver);
         }
 
         public void SelectFinanceApproval()
         {
-            FinanceApprovalCheckbox.Click();
+            FinanceApprovalCheckbox.Click(Driver);
         }
 
         public void SetCustomMilestone(string customMilestone, string date)
@@ -153,69 +132,60 @@ namespace Playbook.Pages
             {
                 try
                 {
-                    executor.ExecuteScript("arguments[0].click();", CustomMilestoneDropdown);
-                    executor.ExecuteScript("arguments[0].click();", AddCustomMilestoneButton);
+                    WaitUntilElementIsClickable(CustomMilestoneDropdown);
+                    CustomMilestoneDropdown.JSExecutorClick(Driver);
+                    AddCustomMilestoneButton.JSExecutorClick(Driver);
                     break;
                 }
-                catch (StaleElementReferenceException)
-                {
-                    Console.WriteLine("Element is not attached to the page document");
-                }
-                catch (NoSuchElementException)
-                {
-                    Console.WriteLine("No such element");
-                }
+                catch (NoSuchElementException) { }
             }
-            CustomMilestoneField.Clear();
-            CustomMilestoneField.SendKeys(customMilestone);
-            CustomMilestoneDate.SendKeys(date);
+            CustomMilestoneField.Clear(Driver);
+            CustomMilestoneField.SendKeys(customMilestone, Driver);
+            CustomMilestoneDate.SendKeys(date, Driver);
         }
 
         public void ChangeDefaultMilestone(string defaultMilestone)
         {
-            DefaultMilestoneDropdown.Click();
-            wait.Until(Driver => DefaultMilestoneSearchField.Displayed);
-            DefaultMilestoneSearchField.SendKeys(defaultMilestone);
-            executor.ExecuteScript("arguments[0].click();", FilteredMilestone);
+            DefaultMilestoneDropdown.Click(Driver);
+            DefaultMilestoneSearchField.SendKeys(defaultMilestone, Driver);
+            FilteredMilestone.Click(Driver);
         }
 
         public void RemoveMilestone()
         {
-            action.SendKeys(Keys.PageDown).Build().Perform();
-            action.MoveToElement(RemoveMilestoneButton).Build().Perform();
-            RemoveMilestoneButton.Click();
+            RemoveMilestoneButton.Click(Driver);
         }
 
         public void SetAdditionalMilestone(string additionalMilestone)
         {
-            AddAnotherMilestoneButton.Click();
-            AdditionalMilestoneDropdown.Click();
-            wait.Until(Driver => AdditionalMilestoneSearchField.Displayed);
-            AdditionalMilestoneSearchField.SendKeys(additionalMilestone);
-            executor.ExecuteScript("arguments[0].click();", FilteredMilestone);
+            AddAnotherMilestoneButton.Click(Driver);
+            AdditionalMilestoneDropdown.Click(Driver);
+            WaitUntilElementIsVisible(AdditionalMilestoneSearchField);
+            AdditionalMilestoneSearchField.SendKeys(additionalMilestone, Driver);
+            FilteredMilestone.Click(Driver);
         }
 
         public void SelectSumRealizedImpact()
         {
-            RealizedImpactCheckbox.Click();
+            RealizedImpactCheckbox.Click(Driver);
         }
 
         public void SelectInitiativeCategory(string initiativeCategory)
         {
-            InitiativeCategoryDropdown.Click();
-            wait.Until(Driver => InitiativeCategorySearchField.Displayed);
-            InitiativeCategorySearchField.SendKeys(initiativeCategory);
-            executor.ExecuteScript("arguments[0].click();", InitiativeCategory);
+            InitiativeCategoryDropdown.Click(Driver);
+            WaitUntilElementIsVisible(InitiativeCategorySearchField);
+            InitiativeCategorySearchField.SendKeys(initiativeCategory, Driver);
+            InitiativeCategory.JSExecutorClick(Driver);
         }
 
         public void ProceedToNextTab()
         {
-            NextButton.Click();
+            NextButton.Click(Driver);
         }
 
         public ReportPage CreateInitiative()
         {
-            CreateButton.Click();
+            CreateButton.Click(Driver);
             return new ReportPage(Driver);
         }
         #endregion

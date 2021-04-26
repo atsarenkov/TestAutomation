@@ -14,25 +14,25 @@ namespace Playbook.StepDefinition
             var loginPage = new LoginPage(Driver);
             var reportPage = loginPage.Login();
             reportPage.SelectOrganization("DEMO - Sample Facility");
-            reportPage.SelectInitiavesTab();
+            reportPage.SelectInitiativesTab();
         }
 
         [When(@"A user navigates to the revenue increase initiative page")]
         public void SelectRevenueIncreaseInitiativeType()
         {
-            new ReportPage(Driver).NavigateToRevenueIncreaseInitiatives();
+            new ReportPage(Driver).SelectInitiativeType(ReportPage.RevenueIncrease);
         }
 
         [When(@"A user navigates to the target percent initiative page")]
         public void SelectTargetPercentInitiativeType()
         {
-            new ReportPage(Driver).NavigateToTargetPercentInitiatives();
+            new ReportPage(Driver).SelectInitiativeType(ReportPage.TargetPercent);
         }
 
         [When(@"A user navigates to the target value initiative page")]
         public void SelectTargetValueInitiativeType()
         {
-            new ReportPage(Driver).NavigateToTargetValueInitiatives();
+            new ReportPage(Driver).SelectInitiativeType(ReportPage.TargetValue);
         }
 
         [Then("A user verifies the initiative details")]
@@ -47,8 +47,8 @@ namespace Playbook.StepDefinition
                 Assert.AreEqual(row["Initiative Type"], manageInitiativePage.InitiativeType());
                 Assert.AreEqual(row["Initiative Status"], manageInitiativePage.InitiativeStatus());
                 Assert.AreEqual(row["Initiative Category"], manageInitiativePage.InitiativeCategory());
-                Assert.AreEqual(row["First Fiscal Year Impact"], manageInitiativePage.FirstFiscalYearImpact());
-                Assert.AreEqual(row["Second Fiscal Year Impact"], manageInitiativePage.SecondFiscalYearImpact());
+                Assert.AreEqual(row["Current Year Estimated Impact"], manageInitiativePage.CurrentYearEstimatedImpact());
+                Assert.AreEqual(row["Next Year Estimated Impact"], manageInitiativePage.NextYearEstimatedImpact());
                 Assert.AreEqual(row["Initiative Description"], manageInitiativePage.InitiativeDescription());
             }
         }

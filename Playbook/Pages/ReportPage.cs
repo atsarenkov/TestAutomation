@@ -1,7 +1,5 @@
 ﻿using OpenQA.Selenium;
-using OpenQA.Selenium.Support.UI;
 using Playbook.BaseClasses;
-using System;
 
 namespace Playbook.Pages
 {
@@ -9,74 +7,84 @@ namespace Playbook.Pages
     {
         public ReportPage(IWebDriver driver) : base(driver) { }
 
-        readonly WebDriverWait wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(10));
-
         #region WebElements
-        IWebElement OrganizationDropdown => Driver.FindElement(By.XPath("//*[@class='dropdown-toggler']"));
-        IWebElement SearchField => Driver.FindElement(By.XPath("//*[@placeholder='Start typing']"));
-        IWebElement Organization => Driver.FindElement(By.XPath("//*[@class='h-dropdown-item--search-find']"));
-        IWebElement CreateInitiativeButton => Driver.FindElement(By.XPath("//*[text()='Create Initiative']"));
-        IWebElement SavingInitiativeMessage => Driver.FindElement(By.XPath("//*[text()='Saving initiative...']"));
-        IWebElement InitiativeSavedMessage => Driver.FindElement(By.XPath("//*[text()='Initiative saved successfully']"));
+        // Report navigation section
+        private readonly By OrganizationDropdown = By.XPath("//*[text()='Organization']//parent::*//following-sibling::button");
+        private readonly By OrganizationSearchField = By.XPath("//*[@placeholder='Start typing']");
+        private readonly By Organization = By.XPath("//*[@class='h-dropdown-item--search-find']");
+        private readonly By InitiativeInclusionDropdown = By.XPath("//*[text()='Initiative Inclusion']//parent::*//following-sibling::button");
+        public static By ExcludePreliminaryInitiatives = By.XPath("//*[@class='ellipsis'][text()='Exclude preliminary initiatives']");
+        public static By ExcludeApprovedInitiatives = By.XPath("//*[@class='ellipsis'][text()='Exclude approved initiatives']");
+        private readonly By InitiativeYearDropdown = By.XPath("//*[text()='Initiative Year']//parent::*//following-sibling::button");
+        private readonly By YearSearchField = By.XPath("//*[@class='plain-dropdown-menu-with-search']/descendant::input");
+        private readonly By Year = By.XPath("//*[@class='plain-dropdown-option--search-find']");
+        // "Progress" tab
+        private readonly By ProgressReport = By.XPath("//*[@class='playbook-goal-report__progress']");
         // "Initiatives" tab
-        IWebElement InitiativesTab => Driver.FindElement(By.XPath("//*[text()='Initiatives']"));
-        IWebElement RevenueIncreaseButton => Driver.FindElement(By.XPath("//*[text()='Revenue Increase']"));
-        IWebElement TargetPercentButton => Driver.FindElement(By.XPath("//*[text()='Target Percent']"));
-        IWebElement TargetValueButton => Driver.FindElement(By.XPath("//*[text()='Target Value']"));
-        IWebElement InitiativeFilterField => Driver.FindElement(By.XPath("//*[@class='au-table']//input"));
-        IWebElement FilteredInitiative => Driver.FindElement(By.XPath("//*[@class='au-table']//a"));
+        private readonly By InitiativesTab = By.XPath("//*[text()='Initiatives']");
+        public static By RevenueIncrease = By.XPath("//*[text()='Revenue Increase']");
+        public static By TargetPercent = By.XPath("//*[text()='Target Percent']");
+        public static By TargetValue = By.XPath("//*[text()='Target Value']");
+        private readonly By InitiativeSearchField = By.XPath("//*[@class='au-table']//input");
+        private readonly By FilteredInitiative = By.XPath("//*[@class='au-table']//a");
+        // Other elements
+        private readonly By CreateInitiativeButton = By.XPath("//*[text()='Create Initiative']");
+        private readonly By InitiativeSavedMessage = By.XPath("//*[text()='Initiative saved successfully']");
         #endregion
 
         #region Actions
         public void SelectOrganization(string organization)
         {
-            wait.Until(Driver => OrganizationDropdown.Displayed);
-            OrganizationDropdown.Click();
-            wait.Until(Driver => SearchField.Displayed);
-            SearchField.SendKeys(organization);
-            Organization.Click();
+            WaitUntilElementIsClickable(OrganizationDropdown);
+            OrganizationDropdown.Click(Driver);
+            WaitUntilElementIsVisible(OrganizationSearchField);
+            OrganizationSearchField.SendKeys(organization, Driver);
+            Organization.Click(Driver);
+        }
+
+        public void SelectInitiativeInclusionOption(By InclusionOption)
+        {
+            WaitUntilElementIsClickable(InitiativeInclusionDropdown);
+            InitiativeInclusionDropdown.Click(Driver);
+            WaitUntilElementIsClickable(InclusionOption);
+            InclusionOption.Click(Driver);
+        }
+
+        public void SelectInitiativeYear(string year)
+        {
+            InitiativeYearDropdown.Click(Driver);
+            WaitUntilElementIsVisible(YearSearchField);
+            YearSearchField.SendKeys(year, Driver);
+            Year.Click(Driver);
         }
 
         public InitiativeModal OpenInitiativeModal()
         {
-            CreateInitiativeButton.Click();
+            CreateInitiativeButton.Click(Driver);
             return new InitiativeModal(Driver);
         }
 
         public bool InitiativeSavedSuccessfully()
         {
-            wait.Until(Driver => SavingInitiativeMessage.Displayed);
-            return wait.Until(Driver => InitiativeSavedMessage.Displayed);
+            WaitUntilElementIsVisible(ProgressReport);
+            return InitiativeSavedMessage.Displayed(Driver);
         }
 
-        public void SelectInitiavesTab()
+        public void SelectInitiativesTab()
         {
-            wait.Until(Driver => InitiativesTab.Displayed);
-            InitiativesTab.Click();
+            WaitUntilElementIsClickable(InitiativesTab);
+            InitiativesTab.Click(Driver);
         }
 
-        public void NavigateToRevenueIncreaseInitiatives()
+        public void SelectInitiativeType(By InitiativeType)
         {
-            wait.Until(Driver => RevenueIncreaseButton.Displayed);
-            RevenueIncreaseButton.Click();
+            InitiativeType.Click(Driver);
         }
 
-        public void NavigateToTargetPercentInitiatives()
+        public ManageInitiativePage OpenInitiave(string initiativeName)
         {
-            wait.Until(Driver => TargetPercentButton.Displayed);
-            TargetPercentButton.Click();
-        }
-
-        public void NavigateToTargetValueInitiatives()
-        {
-            wait.Until(Driver => TargetValueButton.Displayed);
-            TargetValueButton.Click();
-        }
-
-        public ManageInitiativePage OpenInitiave(string initiative)
-        {
-            InitiativeFilterField.SendKeys(initiative);
-            FilteredInitiative.Click();
+            InitiativeSearchField.SendKeys(initiativeName, Driver);
+            FilteredInitiative.Click(Driver);
             return new ManageInitiativePage(Driver);
         }
         #endregion

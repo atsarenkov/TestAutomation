@@ -9,19 +9,20 @@ namespace Playbook.Pages
         public LoginPage(IWebDriver _driver) : base(_driver) { }
 
         #region WebElements
-        IWebElement EmailField => Driver.FindElement(By.Name("email"));
-        IWebElement LoginButton => Driver.FindElement(By.Name("submit"));
-        IWebElement PasswordField => Driver.FindElement(By.Name("Password"));
-        IWebElement SignInButton => Driver.FindElement(By.Id("next"));
+        private readonly By EmailField = By.Name("email");
+        private readonly By LoginButton = By.Name("submit");
+        private readonly By PasswordField = By.Name("Password");
+        private readonly By SignInButton = By.Id("next");
         #endregion
 
         #region Actions
         public ReportPage Login()
         {
-            EmailField.SendKeys(ConfigurationManager.AppSettings["Email"]);
-            LoginButton.Click();
-            PasswordField.SendKeys(ConfigurationManager.AppSettings["Password"]);
-            SignInButton.Click();
+            EmailField.SendKeys(ConfigurationManager.AppSettings["Email"], Driver);
+            LoginButton.Click(Driver);
+            WaitUntilElementIsVisible(PasswordField);
+            PasswordField.SendKeys(ConfigurationManager.AppSettings["Password"], Driver);
+            SignInButton.JSExecutorClick(Driver);
             return new ReportPage(Driver);
         }
         #endregion

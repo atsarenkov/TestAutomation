@@ -1,15 +1,12 @@
 ﻿using NUnit.Framework;
 using Playbook.BaseClasses;
 using Playbook.Pages;
-using System;
 
-namespace Playbook.Regression_Suite
+namespace FunctionalTests
 {
-    [TestFixture, Order(1)]
+    [TestFixture, Category("Functional Tests"), Order(1)]
     public class CreateInitiative : BaseClass
     {
-        new readonly string DueDate = DateTime.Now.AddDays(180).ToString();
-
         [SetUp]
         public void NavigateToInitiativeModal()
         {
@@ -27,15 +24,15 @@ namespace Playbook.Regression_Suite
             Assert.That(reportPage.InitiativeSavedSuccessfully(), Is.True);
         }
 
-        [Test, Category("Smoke Test")]
+        [Test, Category("Smoke Tests")]
         public void CostReductionInitiative()
         {
             var initiativeModal = new InitiativeModal(Driver);
             initiativeModal.EnterInitiativeName("Cost Reduction Initiative");
             initiativeModal.EnterInitiativeDescription("Cost Reduction");
             initiativeModal.ProceedToNextTab();
-            initiativeModal.EnterFirstFiscalYearImpactValue("1000000");
-            initiativeModal.EnterSecondFiscalYearImpactValue("1125580");
+            initiativeModal.EnterCurrentYearEstimatedImpactValue("1000000");
+            initiativeModal.EnterNextYearEstimatedImpactValue("1125580");
             initiativeModal.ProceedToNextTab();
             initiativeModal.SetCustomMilestone("Capacity Utilization", DueDate);
             initiativeModal.ChangeDefaultMilestone("Implementation Planning");
@@ -52,10 +49,10 @@ namespace Playbook.Regression_Suite
             var initiativeModal = new InitiativeModal(Driver);
             initiativeModal.EnterInitiativeName("Revenue Increase Initiative");
             initiativeModal.EnterInitiativeDescription("Revenue Increase");
-            initiativeModal.SelectRevenueIncreaseInitiative();
+            initiativeModal.SelectInitiativeType(InitiativeModal.RevenueIncrease);
             initiativeModal.SelectTeamLeads("Standart User");
             initiativeModal.ProceedToNextTab();
-            initiativeModal.EnterFirstFiscalYearImpactValue("560595");
+            initiativeModal.EnterCurrentYearEstimatedImpactValue("560595");
             initiativeModal.ProceedToNextTab();
             initiativeModal.SetCustomMilestone("Budget Variance", DueDate);
             initiativeModal.ChangeDefaultMilestone("Pilot / Demo Project Review");
@@ -68,11 +65,11 @@ namespace Playbook.Regression_Suite
         {
             var initiativeModal = new InitiativeModal(Driver);
             initiativeModal.EnterInitiativeName("Target Percent Initiative");
-            initiativeModal.SelectTargetPercentInitiative();
+            initiativeModal.SelectInitiativeType(InitiativeModal.TargetPercent);
             initiativeModal.SelectStakeholders("Admin User");
             initiativeModal.ProceedToNextTab();
             initiativeModal.EnterCurrentImpactValue("5.3");
-            initiativeModal.EnterFirstFiscalYearImpactValue("6");
+            initiativeModal.EnterNextYearEstimatedImpactValue("6");
             initiativeModal.SelectFinanceApproval();
             initiativeModal.ProceedToNextTab();
             initiativeModal.SetCustomMilestone("Process / Practice Variation", DueDate);
@@ -87,13 +84,13 @@ namespace Playbook.Regression_Suite
         {
             var initiativeModal = new InitiativeModal(Driver);
             initiativeModal.EnterInitiativeName("Target Value Initiative");
-            initiativeModal.SelectTargetValueInitiative();
+            initiativeModal.SelectInitiativeType(InitiativeModal.TargetValue);
             initiativeModal.SelectTeamLeads("Standart User");
             initiativeModal.SelectStakeholders("Admin User");
             initiativeModal.ProceedToNextTab();
             initiativeModal.EnterCurrentImpactValue("878300");
-            initiativeModal.EnterFirstFiscalYearImpactValue("988255");
-            initiativeModal.EnterSecondFiscalYearImpactValue("1550000");
+            initiativeModal.EnterCurrentYearEstimatedImpactValue("988255");
+            initiativeModal.EnterNextYearEstimatedImpactValue("1550000");
             initiativeModal.SelectFinanceApproval();
             initiativeModal.ProceedToNextTab();
             initiativeModal.SetCustomMilestone("Root Cause Analysis", DueDate);
