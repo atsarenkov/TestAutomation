@@ -45,7 +45,7 @@ namespace Playbook.StepDefinition
                 initiativeModal.EnterInitiativeDescription(row["Description"]);
                 initiativeModal.ProceedToNextTab();
                 initiativeModal.EnterCurrentYearEstimatedImpactValue(row["Current Year Estimated Impact"]);
-                initiativeModal.EnterNextYearEstimatedImpactValue(row["Second Fiscal Year Impact"]);
+                initiativeModal.EnterNextYearEstimatedImpactValue(row["Next Year Estimated Impact"]);
                 initiativeModal.ProceedToNextTab();
                 initiativeModal.SetCustomMilestone(row["Custom Milestone Name"], DueDate);
                 initiativeModal.ProceedToNextTab();

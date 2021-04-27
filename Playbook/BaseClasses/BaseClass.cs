@@ -16,10 +16,10 @@ namespace Playbook.BaseClasses
 
         public static Eyes Eyes { get; set; }
         
-        public static string DueDate = DateTime.Now.AddDays(180).ToString();
+        public static string DueDate = DateTime.Now.AddDays(180).ToString("MM/dd/yyyy");
         public static string CurrentDate = DateTime.Now.ToString("MMM dd, yyyy");
-        public static string CurrentYear = DateTime.Now.ToString("yyyy");
-        public static string NextYear = DateTime.Now.AddYears(1).ToString("yyyy");
+        public static string CurrentYear = DateTime.Now.Year.ToString();
+        public static string NextYear = DateTime.Now.AddYears(1).Year.ToString();
 
         private void OpenEyes(string testName)
         {
