@@ -17,21 +17,31 @@ namespace Playbook.StepDefinition
             reportPage.OpenInitiativeModal();
         }
 
+        [Given(@"A user selects cost reduction initiative type")]
+        public void SelectCostReductionInitiativeType()
+        {
+            DeleteInitiativeFromDB("Cost Reduction Initiative"); // Deletes the initiative from the database, before creating a new one
+            new InitiativeModal(Driver).SelectInitiativeType(InitiativeModal.CostReduction);
+        }
+
         [Given(@"A user selects revenue increase initiative type")]
         public void SelectRevenueIncreaseInitiativeType()
         {
+            DeleteInitiativeFromDB("Revenue Increase Initiative");
             new InitiativeModal(Driver).SelectInitiativeType(InitiativeModal.RevenueIncrease);
         }
 
         [Given(@"A user selects target percent initiative type")]
         public void SelectTargetPercentInitiativeType()
         {
+            DeleteInitiativeFromDB("Target Percent Initiative");
             new InitiativeModal(Driver).SelectInitiativeType(InitiativeModal.TargetPercent);
         }
 
         [Given(@"A user selects target value initiative type")]
         public void SelectTargetValueInitiativeType()
         {
+            DeleteInitiativeFromDB("Target Value Initiative");
             new InitiativeModal(Driver).SelectInitiativeType(InitiativeModal.TargetValue);
         }
 

@@ -13,6 +13,7 @@ namespace Playbook.Pages
         // "Describe The Initiative" Tab
         private readonly By NameField = By.XPath("//*[@placeholder='Enter a short name']");
         private readonly By InitiativeTypeDropdown = By.XPath("//*[@class='playbook-new-initiative-form__field']//*[@class='dropdown-toggler__value ellipsis']");
+        public static By CostReduction = By.XPath("//*[text()='Cost Reduction ($)']");
         public static By RevenueIncrease = By.XPath("//*[text()='Revenue Increase ($)']");
         public static By TargetPercent = By.XPath("//*[text()='Target Percent (%)']");
         public static By TargetValue = By.XPath("//*[text()='Target Value']");

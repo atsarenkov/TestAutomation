@@ -1,4 +1,7 @@
 ﻿using OpenQA.Selenium;
+using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
 
 namespace Playbook.BaseClasses
 {
@@ -37,6 +40,22 @@ namespace Playbook.BaseClasses
         public static void JSExecutorClick(this By locator, IWebDriver Driver)
         {
             ((IJavaScriptExecutor)Driver).ExecuteScript("arguments[0].click();", Driver.FindElement(locator));
+        }
+
+        public static DataTable ExecuteQuery(this SqlConnection sqlConnection, string queryString)
+        {
+            sqlConnection = new SqlConnection(ConfigurationManager.AppSettings["ConnectionString"]);
+            sqlConnection.Open();
+            SqlDataAdapter dataAdaptor = new SqlDataAdapter
+            {
+                SelectCommand = new SqlCommand(queryString, sqlConnection)
+            };
+            dataAdaptor.SelectCommand.CommandType = CommandType.Text;
+            DataSet dataset;
+            dataset = new DataSet();
+            dataAdaptor.Fill(dataset, "table");
+            sqlConnection.Close();
+            return dataset.Tables["table"];
         }
     }
 }

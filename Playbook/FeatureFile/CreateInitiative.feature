@@ -6,6 +6,7 @@ Background: Navigate To The Initiative Modal
 
 @SmokeTests
 Scenario: Create Cost Reduction Initiative
+	Given A user selects cost reduction initiative type
 	When A user enters the initiative details
 	| Initiative Name           | Description    | Current Year Estimated Impact | Next Year Estimated Impact | Custom Milestone Name | Initiative Category |
 	| Cost Reduction Initiative | Cost Reduction | 1000000			     | 1125580		          | Capacity Utilization  | SRT- Supplies       |

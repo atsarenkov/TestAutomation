@@ -5,6 +5,7 @@ using System;
 using TechTalk.SpecFlow;
 using System.Configuration;
 using Applitools.Selenium;
+using System.Data.SqlClient;
 
 namespace Playbook.BaseClasses
 {
@@ -15,7 +16,9 @@ namespace Playbook.BaseClasses
         public static IWebDriver Driver { get; set; }
 
         public static Eyes Eyes { get; set; }
-        
+
+        public static SqlConnection SqlConnection { get; set; }
+
         public static string DueDate = DateTime.Now.AddDays(180).ToString("MM/dd/yyyy");
         public static string CurrentDate = DateTime.Now.ToString("MMM dd, yyyy");
         public static string CurrentYear = DateTime.Now.Year.ToString();
@@ -36,6 +39,11 @@ namespace Playbook.BaseClasses
         {
             OpenEyes(testName);
             Eyes.Check(Target.Region(locator).Fully());
+        }
+
+        public void DeleteInitiativeFromDB(string initiativeName)
+        {
+            SqlConnection.ExecuteQuery("DELETE FROM " + ConfigurationManager.AppSettings["InitiativesTable"] + " WHERE Name = '" + initiativeName + "'");
         }
 
         [BeforeScenario()]

@@ -25,8 +25,9 @@ namespace FunctionalTests
         }
 
         [Test, Category("Smoke Tests")]
-        public void CostReductionInitiative()
+        public void CreateCostReductionInitiative()
         {
+            DeleteInitiativeFromDB("Cost Reduction Initiative"); // Deletes the initiative from the database, before creating a new one
             var initiativeModal = new InitiativeModal(Driver);
             initiativeModal.EnterInitiativeName("Cost Reduction Initiative");
             initiativeModal.EnterInitiativeDescription("Cost Reduction");
@@ -44,8 +45,9 @@ namespace FunctionalTests
         }
 
         [Test]
-        public void RevenueIncreaseInitiative()
+        public void CreateRevenueIncreaseInitiative()
         {
+            DeleteInitiativeFromDB("Revenue Increase Initiative");
             var initiativeModal = new InitiativeModal(Driver);
             initiativeModal.EnterInitiativeName("Revenue Increase Initiative");
             initiativeModal.EnterInitiativeDescription("Revenue Increase");
@@ -61,8 +63,9 @@ namespace FunctionalTests
         }
 
         [Test]
-        public void TargetPercentInitiative()
+        public void CreateTargetPercentInitiative()
         {
+            DeleteInitiativeFromDB("Target Percent Initiative");
             var initiativeModal = new InitiativeModal(Driver);
             initiativeModal.EnterInitiativeName("Target Percent Initiative");
             initiativeModal.SelectInitiativeType(InitiativeModal.TargetPercent);
@@ -80,8 +83,9 @@ namespace FunctionalTests
         }
 
         [Test]
-        public void TargetValueInitiative()
+        public void CreateTargetValueInitiative()
         {
+            DeleteInitiativeFromDB("Target Value Initiative");
             var initiativeModal = new InitiativeModal(Driver);
             initiativeModal.EnterInitiativeName("Target Value Initiative");
             initiativeModal.SelectInitiativeType(InitiativeModal.TargetValue);
