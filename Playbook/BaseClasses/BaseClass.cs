@@ -6,6 +6,8 @@ using TechTalk.SpecFlow;
 using System.Configuration;
 using Applitools.Selenium;
 using System.Data.SqlClient;
+using NUnit.Framework.Interfaces;
+using OpenQA.Selenium.Support.Extensions;
 
 namespace Playbook.BaseClasses
 {
@@ -62,6 +64,11 @@ namespace Playbook.BaseClasses
         [TearDown]
         public static void TearDown()
         {
+            if (TestContext.CurrentContext.Result.Outcome != ResultState.Success)
+            {
+                var screenshot = Driver.TakeScreenshot();
+                screenshot.SaveAsFile(@"C:\screenshots\screenshot" + DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss") + ".jpeg", ScreenshotImageFormat.Jpeg);
+            }
             Driver.Close();
             Driver.Quit();
             if (Eyes.IsOpen is true) 
