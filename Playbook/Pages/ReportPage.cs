@@ -8,7 +8,9 @@ namespace Playbook.Pages
         public ReportPage(IWebDriver driver) : base(driver) { }
 
         #region WebElements
-        // Report navigation section
+        private readonly By CreateInitiativeButton = By.XPath("//*[text()='Create Initiative']");
+        private readonly By InitiativeSavedMessage = By.XPath("//*[text()='Initiative saved successfully']");
+        // Report navigation
         private readonly By OrganizationDropdown = By.XPath("//*[text()='Organization']//parent::*//following-sibling::button");
         private readonly By OrganizationSearchField = By.XPath("//*[@placeholder='Start typing']");
         private readonly By Organization = By.XPath("//*[@class='h-dropdown-item--search-find']");
@@ -27,9 +29,6 @@ namespace Playbook.Pages
         public static By TargetValue = By.XPath("//*[text()='Target Value']");
         private readonly By InitiativeSearchField = By.XPath("//*[@class='au-table']//input");
         private readonly By Initiative = By.XPath("//*[@class='au-table']//a");
-        // Other elements
-        private readonly By CreateInitiativeButton = By.XPath("//*[text()='Create Initiative']");
-        private readonly By InitiativeSavedMessage = By.XPath("//*[text()='Initiative saved successfully']");
         #endregion
 
         #region Actions

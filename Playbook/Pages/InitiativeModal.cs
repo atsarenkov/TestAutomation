@@ -10,7 +10,7 @@ namespace Playbook.Pages
         #region WebElements
         private readonly By NextButton = By.XPath("//*[text()='Next']");
         private readonly By CreateButton = By.XPath("//*[text()='Create']");
-        // "Describe The Initiative" Tab
+        // "Describe The Initiative" tab
         private readonly By NameField = By.XPath("//*[@placeholder='Enter a short name']");
         private readonly By InitiativeTypeDropdown = By.XPath("//*[@class='playbook-new-initiative-form__field']//*[@class='dropdown-toggler__value ellipsis']");
         public static By CostReduction = By.XPath("//*[text()='Cost Reduction ($)']");

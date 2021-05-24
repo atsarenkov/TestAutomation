@@ -12,7 +12,7 @@ namespace Playbook.Pages
         private readonly By DeleteInitiativeButton = By.XPath("//*[text()='Delete Initiative']");
         private readonly By DeleteButton = By.XPath("//*[text()='Delete']");
         private readonly By EditInitiativeButton = By.XPath("//*[text()='Edit Initiative']");
-        // Initiative Details
+        // Initiative details
         private readonly By Name = By.XPath("//*[@class='description-title']");
         private readonly By FinanceStatus = By.XPath("//*[@class='description-finance-status']");
         private readonly By EnterRealizedImpactButton = By.XPath("//*[text()='Enter Realized Impact']");
