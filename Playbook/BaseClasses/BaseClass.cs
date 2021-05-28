@@ -49,7 +49,7 @@ namespace Playbook.BaseClasses
         }
 
         [BeforeScenario()]
-        [SetUp, Order(0)]
+        [SetUp]
         public static void SetUp()
         {
             Driver = new WebDriverFactory().Create(BrowserType.Chrome);
