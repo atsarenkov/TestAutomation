@@ -39,8 +39,18 @@ namespace Playbook.Configuration
 
         private static IWebDriver Firefox()
         {
-            IWebDriver driver = new FirefoxDriver();
+            new DriverManager().SetUpDriver(new FirefoxConfig());
+            IWebDriver driver = new FirefoxDriver(GetFirefoxOptions());
+            //driver.Manage().Window.Maximize();
             return driver;
+        }
+
+        private static FirefoxOptions GetFirefoxOptions()
+        {
+            var option = new FirefoxOptions();
+            option.AddArgument("--width=1920,height=1080");
+            option.AddArgument("--headless");
+            return option;
         }
     }
 }
